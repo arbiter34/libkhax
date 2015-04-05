@@ -587,9 +587,9 @@ Result KHAX::MemChunkHax::Step6_ExecuteSVCCode()
 
 //------------------------------------------------------------------------------------------------
 // SVC-mode entry point thunk (true entry point).
-#ifndef _MSC_VER
+//#ifndef _MSC_VER
 __attribute__((__naked__))
-#endif
+//#endif
 Result KHAX::MemChunkHax::Step6a_SVCEntryPointThunk()
 {
 	__asm__ volatile("add sp, sp, #8");
@@ -601,9 +601,9 @@ Result KHAX::MemChunkHax::Step6a_SVCEntryPointThunk()
 
 //------------------------------------------------------------------------------------------------
 // SVC-mode entry point.
-#ifndef _MSC_VER
+//#ifndef _MSC_VER
 __attribute__((__noinline__))
-#endif
+//#endif
 Result KHAX::MemChunkHax::Step6b_SVCEntryPoint()
 {
 	if (Result result = Step6c_UndoCreateThreadPatch())
@@ -685,8 +685,8 @@ Result KHAX::MemChunkHax::Step6e_GrantSVCAccess()
 
 	// Get the SVC ACL within the KProcess.
 	KSVCACL &acl = (*m_versionData->m_svcAccessControlConvert)(kprocess);
-        *(int *)(m_versionData->m_syscallPatchAddress) = 0xE1A00000;
-        *(int *)(m_versionData->m_syscallPatchAddress+8) = 0xE1A00000;
+//        *(int *)(m_versionData->m_syscallPatchAddress) = 0xE1A00000;
+//        *(int *)(m_versionData->m_syscallPatchAddress+8) = 0xE1A00000;
 
 	// Save the old one for diagnostic purposes.
 	std::memcpy(m_oldACL, acl, sizeof(acl));
